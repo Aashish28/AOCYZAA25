@@ -1,0 +1,42 @@
+managed;
+strict ( 2 );
+define behavior for YR_Project01TPM alias Project
+implementation in class YBP_R_Project01TPM unique
+persistent table YZA_T_PROJECT
+etag master LocalLastChangedAt
+lock master
+authorization master( global )
+early numbering
+{
+  field ( readonly )
+   ProjID,
+   Isparentproject,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( mandatory )
+  Projname;
+
+  create;
+  update;
+  delete;
+
+  determination set_parentproject on save { create; }
+  action set_project_active;
+
+  mapping for YZA_T_PROJECT
+  {
+    ProjID = PROJID;
+    Projname = PROJNAME;
+    Isparentproject = ISPARENTPROJECT;
+    Isactiveproject = ISACTIVEPROJECT;
+    LocalCreatedBy = LOCAL_CREATED_BY;
+    LocalCreatedAt = LOCAL_CREATED_AT;
+    LocalLastChangedBy = LOCAL_LAST_CHANGED_BY;
+    LocalLastChangedAt = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+}

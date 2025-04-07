@@ -1,0 +1,4 @@
+@ObjectModel.leadingEntity.name: 'YC_Project01TPM'
+define service YUI_Project01M {
+  expose YC_PROJECT01TPM as Project;
+}

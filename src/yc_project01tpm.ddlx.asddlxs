@@ -1,0 +1,97 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'Project', 
+    typeNamePlural: 'Projects', 
+    title: {
+      type: #STANDARD, 
+      label: 'Project', 
+      value: 'ProjID'
+    }
+  }, 
+  presentationVariant: [ {
+    sortOrder: [ {
+      by: 'ProjID', 
+      direction: #DESC
+    } ], 
+    visualizations: [ {
+      type: #AS_LINEITEM
+    } ]
+  } ]
+}
+annotate view YC_Project01TPM with
+{
+  @UI.facet: [ {
+    id: 'idCollection', 
+    type: #COLLECTION, 
+    label: 'Project', 
+    position: 10 
+  }, 
+  {
+    id: 'idIdentification', 
+    parentId: 'idCollection', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'General Information', 
+    position: 10 
+  } ]
+  @UI.lineItem: [ 
+  { type: #FOR_ACTION , dataAction: 'set_project_active', label: 'Set Active',
+    importance: #HIGH,
+    position: 10     
+   }]
+  @UI.identification: [ {
+    position: 10 
+  } ]
+  @UI.selectionField: [ {
+    position: 10 
+  } ]
+  @EndUserText.label: 'Project Id'
+  ProjID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #HIGH, 
+    label: 'Projname'
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'Projname'
+  } ]
+  @EndUserText.label: 'Project Name'
+  Projname;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 30 
+  } ]
+  @EndUserText.label: 'Parent Project'
+  Isparentproject;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #HIGH
+  } ]
+  @UI.identification: [ {
+    position: 40 
+  } ]
+  @EndUserText.label: 'Active Project'
+  Isactiveproject;
+  
+  @UI.hidden: true
+  LocalCreatedBy;
+  
+  @UI.hidden: true
+  LocalCreatedAt;
+  
+  @UI.hidden: true
+  LocalLastChangedBy;
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+  
+  @UI.hidden: true
+  LastChangedAt;
+}
